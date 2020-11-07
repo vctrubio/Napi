@@ -10,10 +10,126 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_153812) do
+ActiveRecord::Schema.define(version: 2020_11_06_182513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bags", force: :cascade do |t|
+    t.bigint "pickup_id", null: false
+    t.integer "kg"
+    t.integer "price"
+    t.float "avgprice"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.index ["pickup_id"], name: "index_bags_on_pickup_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.bigint "employee_id", null: false
+    t.string "name"
+    t.string "phone"
+    t.string "address"
+    t.string "flat"
+    t.string "zone"
+    t.text "description"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_clients_on_employee_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.float "credit", default: 0.0, null: false
+    t.text "description"
+    t.boolean "archive"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "fruits", force: :cascade do |t|
+    t.string "name"
+    t.float "priceA"
+    t.float "priceB"
+    t.float "priceC"
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "landlords", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "address"
+    t.text "description"
+    t.integer "fields", default: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.date "date"
+    t.string "time"
+    t.float "price", default: 0.0
+    t.float "kg", default: 0.0
+    t.string "comment"
+    t.boolean "paid"
+    t.boolean "delivered"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_orders_on_client_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.date "date"
+    t.string "name"
+    t.string "price"
+    t.boolean "ticket"
+    t.bigint "employee_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_payments_on_employee_id"
+  end
+
+  create_table "pickups", force: :cascade do |t|
+    t.bigint "landlord_id"
+    t.date "date"
+    t.integer "kg"
+    t.float "price"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["landlord_id"], name: "index_pickups_on_landlord_id"
+  end
+
+  create_table "receipts", force: :cascade do |t|
+    t.float "kg"
+    t.bigint "fruit_id"
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fruit_id"], name: "index_receipts_on_fruit_id"
+    t.index ["order_id"], name: "index_receipts_on_order_id"
+  end
+
+  create_table "totals", force: :cascade do |t|
+    t.bigint "payment_id"
+    t.bigint "order_id"
+    t.bigint "pickup_id"
+    t.float "inflow"
+    t.float "outflow"
+    t.float "balance"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_totals_on_order_id"
+    t.index ["payment_id"], name: "index_totals_on_payment_id"
+    t.index ["pickup_id"], name: "index_totals_on_pickup_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +143,14 @@ ActiveRecord::Schema.define(version: 2020_11_06_153812) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bags", "pickups"
+  add_foreign_key "clients", "employees"
+  add_foreign_key "orders", "clients"
+  add_foreign_key "payments", "employees"
+  add_foreign_key "pickups", "landlords"
+  add_foreign_key "receipts", "fruits"
+  add_foreign_key "receipts", "orders"
+  add_foreign_key "totals", "orders"
+  add_foreign_key "totals", "payments"
+  add_foreign_key "totals", "pickups"
 end

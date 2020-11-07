@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pickup:</strong>
+  <%= @bag.pickup_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bag.name %>
+</p>
+
+<p>
+  <strong>Kg:</strong>
+  <%= @bag.kg %>
+</p>
+
+<p>
+  <strong>Pric:</strong>
+  <%= @bag.price %>
+</p>
+
+<p>
+  <strong>Avgprice:</strong>
+  <%= @bag.avgprice %>
+</p>
+
+<%= link_to 'Edit', edit_bag_path(@bag) %> |
+<%= link_to 'Back', bags_path %>

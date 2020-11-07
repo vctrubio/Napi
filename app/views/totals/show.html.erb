@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Inflow:</strong>
+  <%= @total.inflow %>
+</p>
+
+<p>
+  <strong>Outflow:</strong>
+  <%= @total.outflow %>
+</p>
+
+<p>
+  <strong>Balance:</strong>
+  <%= @total.balance %>
+</p>
+
+<%= link_to 'Edit', edit_total_path(@total) %> |
+<%= link_to 'Back', totals_path %>

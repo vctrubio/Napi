@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Landlord:</strong>
+  <%= @pickup.landlord_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @pickup.date %>
+</p>
+
+<p>
+  <strong>Kg:</strong>
+  <%= @pickup.kg %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @pickup.price %>
+</p>
+
+<p>
+  <strong>description:</strong>
+  <%= @pickup.description %>
+</p>
+
+<%= link_to 'Edit', edit_pickup_path(@pickup) %> |
+<%= link_to 'Back', pickups_path %>

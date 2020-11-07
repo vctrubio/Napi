@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Kg:</strong>
+  <%= @receipt.kg %>
+</p>
+
+<p>
+  <strong>Fruit:</strong>
+  <%= @receipt.fruit_id %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @receipt.order_id %>
+</p>
+
+<%= link_to 'Edit', edit_receipt_path(@receipt) %> |
+<%= link_to 'Back', receipts_path %>
