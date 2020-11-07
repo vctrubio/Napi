@@ -39,7 +39,9 @@ class Orders < Api
 		get '/Order/:id' do
 		  @order = Order.find_by(id: params[:id])
 
-		  # methods toggle paid, delivered, completed
+		  #   on save/update add/subtract client.employee.credit total.new
+
+		  # methods toggle paid, delivered, completed --here on in MODULE
 		  def paid
 			@order.toggle! :paid
 		  end	
@@ -51,7 +53,12 @@ class Orders < Api
 			@order.delivered = true
 		  end
 
-		#   on save/update add/subtract client.employee.credit total.new
+
+		# def find_employee
+		# 	# this or this
+		# 	@employee = Employee.find(params[:id])
+		# 	@employee.credit = ...
+		# end
 
 		  if @order.present?
 			{ data: @order, status: true }

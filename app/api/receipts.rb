@@ -24,6 +24,16 @@ class Receipts < Api
 			end
 		end
 
+		get '/order/:id' do
+			@order = Order.find_by(id: params[:id])
+			if @order.present?
+				# this this correct?
+			  { data: @order.receipts, status: true }
+			else
+			  error!({ status: false, message: 'err' }, 400)
+			end
+		  end
+
 		desc 'Create a Receipt'
 		params do
 			requires :fruit_id, type: String, desc: 'fruit_id'
