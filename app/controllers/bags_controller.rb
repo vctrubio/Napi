@@ -27,7 +27,7 @@ class BagsController < ApplicationController
     @bag = Bag.new(bag_params)
     respond_to do |format|
       if @bag.save
-        @bag.avgprice = (@bag.price / @bag.kg)
+        # @bag.avgprice = (@bag.price / @bag.kg)
         format.html { redirect_to @bag, notice: 'Bag was successfully created.' }
         format.json { render :show, status: :created, location: @bag }
       else
