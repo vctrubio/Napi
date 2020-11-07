@@ -1,3 +1,50 @@
+<%cle = ENV["GOOGLE_MAPS_API_KEY"]%>
+<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=<%=cle%>&libraries=places&callback=initAutocomplete' async defer ></script>
+<script>
+
+let placeSearch;
+let autocomplete;
+
+const componentForm = {
+  street_number: "short_name",
+  route: "long_name",
+  locality: "long_name",
+  administrative_area_level_1: "short_name",
+  postal_code: "short_name",
+};
+
+function initAutocomplete() {
+  autocomplete = new google.maps.places.Autocomplete(
+    document.getElementById("autocomplete"),
+    {
+      componentRestrictions: { 'country': ["ESP"] },
+    }
+  );
+
+autocomplete.addListener("place_changed", fillInAddress);
+
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  const place = autocomplete.getPlace();
+  var address = place.address_components;
+  var formZipCode = document.getElementById("autozone");
+
+  console.log(address);
+   var zipcode = "";
+  for(var i = 0; i < address.length; i++)
+  {
+  if (address[i].types == 'postal_code')
+  {
+    zipcode = address[i].short_name
+    formZipCode.value = zipcode
+  }
+  }
+} 
+
+
+};
+
+</script>
 
 <%= simple_form_for(@client) do |f| %>
   <%= f.error_notification %>
@@ -7,7 +54,7 @@
     <%= f.association :employee %>
     <%= f.input :name %>
     <%= f.input :phone %>
-    <%= f.input :address %>
+    <%= f.input :address, class: "form-control",:input_html => { :id => "autocomplete" }, data:{ target: "places.field"} %>
     <%= f.input :flat %>
     <%= f.input :zone %>
     <%= f.input :description %>

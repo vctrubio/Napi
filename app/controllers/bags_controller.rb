@@ -25,7 +25,6 @@ class BagsController < ApplicationController
   # POST /bags.json
   def create
     @bag = Bag.new(bag_params)
-
     respond_to do |format|
       if @bag.save
         format.html { redirect_to @bag, notice: 'Bag was successfully created.' }
