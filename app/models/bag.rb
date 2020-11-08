@@ -3,5 +3,5 @@ class Bag < ApplicationRecord
 
   def avgprice
     self.avgprice = self.price / self.kg
-  end
+  end 
 end

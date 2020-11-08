@@ -17,16 +17,18 @@ class Bags < Api
 		desc 'Fetch a single bag'
 		get '/:id' do
 			@bag = Bag.find_by(id: params[:id])
+			bag_pickup = @bag.pickup
+			bag_landlord = @bag.pickup.landlord
 			if @bag.present?
 				{ data: @bag, status: true }
 			else
 				error!({ status: false, message: 'Bag with this id not found' }, 400)
 			end
 		end
+
 	desc 'Bag methods'
 	get '/bag/:id' do
 	  @bag = Bag.find_by(id: params[:id])
-	# on save/update @bag.avgprice = (@bag.price / @bag.kg) 
 	# set pickup_id
 	  if @bag.present?
 		{ data: @bag, status: true }

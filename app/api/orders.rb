@@ -18,6 +18,13 @@ class Orders < Api
 		desc 'Fetch a single order'
 		get '/:id' do
 			@order = Order.find_by(id: params[:id])
+			
+			@order.receipts.each do |r|
+				fruit_name = r.fruit.name
+				kg = r.kg
+				number_of_fruits = r.count
+			end
+
 			if @order.present?
 				{ data: @order, status: true }
 			else

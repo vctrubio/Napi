@@ -28,15 +28,18 @@ class Clients < Api
     desc 'Client methods'
     get '/client/:id' do
       @client = Client.find_by(id: params[:id])
-     
       #total no. of orders, kg, €
       order_count = @client.orders.count
-      client_total_prices = 0
-      client_total_kgs = 0
-      @client.orders.each do |orders|
-        client_total_prices += orders.price
-        client_total_kgs += orders.kg
+      client_order_last = @client.orders.last
+      client_order_last_five = @client.orders.last(5)
+
+      # client_total_prices = 0
+      # client_total_kgs = 0
+      @client.orders.each do |order|
+        client_total_prices += order.price.sum
+        client_total_kgs += order.kg.sum
       end
+      client_avg_price = (client_total_kgs/client_total_prices)
 
       if @client.present?
         { data: @client, status: true }

@@ -7,6 +7,14 @@ class Employee < ApplicationRecord
   # not be able to delete
   validates :name, presence: true
 
+  def archive
+    self.toggle! :archive
+  end	
+
+  def credit
+    #a method to pay the man, Payment.new(employee_id)
+  end
+
 end
 
 

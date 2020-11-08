@@ -18,6 +18,15 @@ class Landlords < Api
 		desc 'Fetch a single landlord'
 		get '/:id' do
 			@landlord = Landlord.find_by(id: params[:id])
+			landlord_pickups = @lanlord.pickups
+			landlord_pickups_count = @lanlord.pickups.count
+			# total_kg_pickups
+			# total_paid
+			# avgprice
+			landlord_pickups.each do |p|
+				total_kg_pickups += p.kg
+				total_paid += p.price
+			end
 			if @landlord.present?
 				{ data: @landlord, status: true }
 			else

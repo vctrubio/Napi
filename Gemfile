@@ -6,6 +6,7 @@ ruby '2.5.3'
 gem 'grape'
 gem 'grape_on_rails_routes'
 gem 'geocoder'
+gem 'twilio-ruby'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'

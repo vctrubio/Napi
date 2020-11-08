@@ -27,6 +27,20 @@ class Employees < Api
         end
       end
 
+      desc 'Fetch Employee Clients'
+      get '/:id' do
+        @employee = Employee.find_by(id: params[:id])
+        # get clients, total order contributed
+        employee_clients = @employee.clients
+        employee_clients_count = @employee.clients.count
+        orders_contributed = employee_clients.orders.count
+
+        if @employee.present?
+          { data: @employee, status: true }
+        else
+          error!({ status: false, message: 'employee with this id not found' }, 400)
+        end
+      end
 
 
 

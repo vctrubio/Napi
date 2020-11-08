@@ -9,5 +9,5 @@ class Pickup < ApplicationRecord
 
   def deletetotal
     self.total -= self.pickup.price
-  end
+  end 
 end

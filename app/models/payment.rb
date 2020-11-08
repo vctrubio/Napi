@@ -11,9 +11,9 @@ class Payment < ApplicationRecord
         if self.employee_id.exist?
             self.employee.credit -= self.price
         end
-    end
+    end 
   
-      def deleteprice
+    def deleteprice
         self.total += self.price
         if self.employee_id.exist?
             self.employee.credit += self.price

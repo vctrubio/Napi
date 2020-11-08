@@ -17,6 +17,7 @@ class Pickups < Api
 		desc 'Fetch a single Pickup'
 		get '/:id' do
 			@pickup = Pickup.find_by(id: params[:id])
+			pickup_landlord = @pickup.landlord				
 			if @pickup.present?
 				{ data: @pickup, status: true }
 			else
