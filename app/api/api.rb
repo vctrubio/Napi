@@ -1,3 +1,5 @@
+require 'grape-swagger'
+
 class Api < Grape::API
   format :json
   prefix "api"
@@ -13,6 +15,7 @@ class Api < Grape::API
   mount Pickups
   mount Receipts
   mount Totals
+  add_swagger_documentation
   before do
       header['Access-Control-Allow-Origin'] = '*'
       header['Access-Control-Request-Method'] = '*'
@@ -23,5 +26,4 @@ class Api < Grape::API
       raise e
       error_response(message: "Internal server error: #{e}", status: 500)
   end
-
 end
