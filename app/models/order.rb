@@ -2,12 +2,14 @@ class Order < ApplicationRecord
   belongs_to :client
   has_many :receipts, dependent: :destroy
   has_many :employees, through: :clients
-  has_many :totals, dependent: :destroy
+  has_one :total, dependent: :destroy
   # belongs_to :total
   has_many :fruits, through: :receipts
   
   after_create :set_total
-  after_save :on_update
+  after_update :update_total
+
+  before_destroy :subtract_employee_credit
   # after_save :set_prices
 
     def paid
@@ -29,14 +31,7 @@ class Order < ApplicationRecord
 
     def addprice
       self.client.employee.credit += (self.price * 0.10)
-      self.total.inflow += (self.price)
-      self.total.inflow.save
-      self.client.employee.credit.save  
-    end
-
-    def deleteprice
-      self.employee.credit -= (self.price * 0.10)
-      self.total.outflow -= (self.price)
+      self.client.employee.save  
     end
 
     def avgprice
@@ -51,15 +46,20 @@ class Order < ApplicationRecord
         total.save
       end
 
-      def on_update
-        self.totals.inflow = self.price
-        self.totals.inflow.save
+      def update_total
+        self.total.inflow = self.price
+        self.total.save
       end
 
       def set_prices
         addprice
       end
+
+      def subtract_employee_credit
+      end
   
+      # def deleteprice
+      #   self.employee.credit -= (self.price * 0.10)
+      # end
   
- # delete warning
 end

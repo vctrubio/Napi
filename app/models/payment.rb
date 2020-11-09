@@ -1,6 +1,9 @@
 class Payment < ApplicationRecord
     has_many :employees
-    has_many :totals, dependent: :destroy
+    has_one :total, dependent: :destroy
+
+    after_create :set_total
+    after_update :update_total
 
     def tickets?
         self.ticket.true
@@ -18,6 +21,20 @@ class Payment < ApplicationRecord
         if self.employee_id.exist?
             self.employee.credit += self.price
         end      
+    end
+
+    private
+
+    def set_total
+      total = Total.new
+      total.payment_id = self.id
+      total.outflow = self.price
+      total.save
+    end
+
+    def update_total
+      self.total.outflow = self.price
+      self.total.save
     end
 
 end
