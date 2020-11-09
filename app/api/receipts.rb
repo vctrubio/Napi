@@ -39,6 +39,7 @@ class Receipts < Api
 			requires :fruit_id, type: String, desc: 'fruit_id'
 			requires :order_id, type: String, desc: 'order_id'
 			requires :kg, type: Float, desc: 'kg'
+			requires :price, type: Float, desc: 'price'
 		end
 
 		post '/' do
@@ -56,6 +57,7 @@ class Receipts < Api
 			requires :fruit_id, type: String, desc: 'fruit_id'
 			requires :order_id, type: String, desc: 'order_id'
 			requires :kg, type: Float, desc: 'kg'
+			requires :price, type: Float, desc: 'price'
 		end
     
 		put '/:id' do
