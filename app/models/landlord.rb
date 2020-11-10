@@ -6,4 +6,15 @@ class Landlord < ApplicationRecord
 
    # delete warning
 
+   def kgs
+    self.pickups.sum(:kg)
+   end
+
+   def paid
+    self.pickups.sum(:price)
+   end
+
+   def pickup_count
+    self.pickups.count
+   end
 end

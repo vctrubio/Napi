@@ -7,9 +7,9 @@ class Order < ApplicationRecord
   has_many :fruits, through: :receipts
   
   after_create :set_total
-  after_update :update_total
+  after_update :update_total, :addprice
 
-  before_destroy :subtract_employee_credit
+  # before_destroy :subtract_employee_credit
   # after_save :set_prices
 
     def paid
@@ -30,6 +30,9 @@ class Order < ApplicationRecord
     end
 
     def addprice
+      self.kg = self.receipts.sum(:kg)
+      self.price = self.receipts.sum(:price)
+      # this one tricky
       self.client.employee.credit += (self.price * 0.10)
       self.client.employee.save  
     end
@@ -49,10 +52,6 @@ class Order < ApplicationRecord
       def update_total
         self.total.inflow = self.price
         self.total.save
-      end
-
-      def set_prices
-        addprice
       end
 
       def subtract_employee_credit

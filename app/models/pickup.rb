@@ -6,7 +6,7 @@ class Pickup < ApplicationRecord
   after_create :set_total
   after_update :update_total
 
-  after_save :calculate_kg
+  # after_save :calculate_kg
 
   private
 
@@ -17,18 +17,19 @@ class Pickup < ApplicationRecord
     total.save
   end
 
-  def calculate_kg
-    self.kg = self.bags.sum(:kg)
-    self.price = self.bags.sum(:price)
-    self.save
-  end
+  # def calculate_kg
+  #   if !self.kg.nil?
+  #   self.kg = self.bags.sum(:kg)
+  #   end
+  #   if !self.price.nil?
+  #     self.price = self.bags.sum(:price)
+  #   end
+  #   self.save
+  # end
 
-  Pickup.last.bags.sum(:kg)
   def update_total
     self.total.outflow = self.price
     self.total.save
-    # self.landlord.fields.subtract(self.price) 
-    # self.landlord.save
   end
 
 end

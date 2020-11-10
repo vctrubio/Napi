@@ -1,10 +1,13 @@
 class Bag < ApplicationRecord
   belongs_to :pickup, touch: true
-  after_save :update_pickup, :avgprice
-  after_update :update_pickup
+  after_save :avgprice
+
+  validates :kg, presence: true
+  validates :price, presence: true
 
   def avgprice
-    self.avgprice = self.price / self.kg
+    self.avgprice = self.price.to_f / self.kg.to_f
   end 
+
 
 end

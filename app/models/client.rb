@@ -9,5 +9,16 @@ class Client < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   
+  def last_order
+    self.orders.last
+  end
 
+  def last_three_orders
+    self.orders.last.limit(3)
+  end
+
+  def last_seven_orders
+    self.orders.last.limit(7)
+  end
+  # ZIPCODE ADD
 end
