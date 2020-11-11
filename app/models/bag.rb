@@ -7,7 +7,7 @@ class Bag < ApplicationRecord
 
   def avgprice
     self.avgprice = self.price.to_f / self.kg.to_f
+    self.pickup.save
   end 
-
 
 end

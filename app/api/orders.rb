@@ -6,8 +6,13 @@ class Orders < Api
 
 		desc 'Fetch all orders'
 		get '/' do
-      @orders = Order.all
-      # do order.receipts 
+		  @orders = Order.all
+		  
+
+		#   @orders.each do |a|
+		# 	a.merge({abc: a.p})
+		#   end
+      	# do order.receipts 
 			if @orders.present?
 				{ data: @orders, status: true }
 			else

@@ -8,19 +8,25 @@ class Receipt < ApplicationRecord
   validates :kg, presence: true
   validates :fruit_id, presence: true
 
-  after_save :calculate_price
-  # after_save :add_order_price
+  before_save :calculate_price
+  after_save :add_order_price
 
 
   def calculate_price
-    if self.price.to_i < 5
-      self.update_attribute(:kg, (self.kg*self.fruit.priceA))
+
+    if  self.kg.to_i <5 
+    self.price = (self.kg*self.fruit.priceA)
+    elsif self.kg.to_i >=10
+    self.price = (self.kg*self.fruit.priceC)
+    else 
+    self.price = (self.kg*self.fruit.priceB)
     end
-    # self.save
   end
-  # def add_order_price
-  #   self.order.increment(:price, self.kg)
-  # end
+
+  def add_order_price
+    order = self.order
+    order.save
+  end
 
   # for receipts where: r 1...5 5...10 10..100
   

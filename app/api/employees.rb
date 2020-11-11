@@ -34,7 +34,7 @@ class Employees < Api
         employee_clients = @employee.clients
         employee_clients_count = @employee.clients.count
         orders_contributed = employee_clients.orders.count
-
+        
         if @employee.present?
           { data: @employee, status: true }
         else
@@ -51,6 +51,7 @@ class Employees < Api
         requires :credit, type: Float, desc: 'Credit'
         requires :description, type: String, desc: 'Description'
         requires :archive, type: Boolean, desc: 'Archive'
+        requires :cash, type: Float, desc: 'Cash'
       end
   
       post '/' do
@@ -69,6 +70,7 @@ class Employees < Api
         requires :credit, type: Float, desc: 'Credit'
         requires :description, type: String, desc: 'Description'
         requires :archive, type: Boolean, desc: 'Archive'
+        requires :cash, type: Float, desc: 'Cash'
       end
 
       put '/:id' do

@@ -4,32 +4,35 @@ class Pickup < ApplicationRecord
   has_one :total, dependent: :destroy
 
   after_create :set_total
-  after_update :update_total
+  after_update :calculate_kg
+  # UPDATE BECUASE CALLING FROM OTHER MODEL
 
-  # after_save :calculate_kg
 
   private
 
   def set_total
     total = Total.new
     total.pickup_id = self.id
-    total.outflow = self.price
     total.save
   end
 
-  # def calculate_kg
-  #   if !self.kg.nil?
-  #   self.kg = self.bags.sum(:kg)
-  #   end
-  #   if !self.price.nil?
-  #     self.price = self.bags.sum(:price)
-  #   end
-  #   self.save
-  # end
-
-  def update_total
+  def calculate_kg
+    if self.price.nil?
+      self.price =0
+    end
+    if self.kg.nil?
+      self.kg = 0
+    end
+    if !self.bags.nil?
+    self.price = self.bags.sum(:price)
+    self.kg = self.bags.sum(:kg)
+    end
+    puts "done"
     self.total.outflow = self.price
     self.total.save
+    puts"YYYY"
+      # price, kg from bags
   end
+
 
 end
