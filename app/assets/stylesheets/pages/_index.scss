@@ -1,2 +1,55 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.box-two{
+    border: 1px solid black;
+    margin: 10px;
+    min-height:350px;
+
+
+}
+
+.box-three{
+    border: 1px solid black;
+    margin: 10px;
+    min-height:150px;
+
+
+}
+
+.box-uno{
+    display: flex;
+    border: 1px solid black;
+    margin: 10px;
+    min-height:150px;
+}
+
+.container-three{
+    max-width: 1200px;
+}
+
+.content-header{
+    border: 1px solid black;
+    height: 150px;
+    width: 800px;
+}
+
+.content-logo{
+    border: 1px solid black;
+    height: 150px;
+    width: 180px;
+    display: flex;
+    margin-left: 180px;
+
+}
+
+.content-name{
+    border: 1px solid black;
+    margin: 10px;
+    height:60px;
+}
+.content-info{
+    border: 1px solid black;
+    margin: 10px;
+    height:60px;
+}

@@ -28,7 +28,7 @@ class Payments < Api
 		params do
 			requires :employee_id, type: String, desc: 'employee_id'
 			requires :date, type: Date, desc: 'date'
-   			requires :price, type: String, desc: 'price'
+   			requires :price, type: Float, desc: 'price'
       			# change db:to_int
 			requires :ticket, type: Boolean, desc: 'ticket'
 		end
@@ -48,7 +48,7 @@ class Payments < Api
 		params do
 			requires :employee_id, type: String, desc: 'employee_id'
 			requires :date, type: Date, desc: 'date'
-      		requires :price, type: String, desc: 'price'
+      		requires :price, type: Float, desc: 'price'
       		# change db:to_int
 			requires :ticket, type: Boolean, desc: 'ticket'
     	end

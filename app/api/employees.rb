@@ -52,6 +52,7 @@ class Employees < Api
         requires :description, type: String, desc: 'Description'
         requires :archive, type: Boolean, desc: 'Archive'
         requires :cash, type: Float, desc: 'Cash'
+        requires :paidcash, type: Float, desc: 'paidcash'
       end
   
       post '/' do
@@ -71,6 +72,7 @@ class Employees < Api
         requires :description, type: String, desc: 'Description'
         requires :archive, type: Boolean, desc: 'Archive'
         requires :cash, type: Float, desc: 'Cash'
+        requires :paidcash, type: Float, desc: 'paidcash'
       end
 
       put '/:id' do

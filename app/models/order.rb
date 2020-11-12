@@ -1,10 +1,10 @@
 class Order < ApplicationRecord
   belongs_to :client
   has_many :receipts, dependent: :destroy
-  has_and_belongs_to_many :employees, through: :clients
   has_one :total, dependent: :destroy
   has_many :fruits, through: :receipts
-  
+  has_one :employee, :through => :client
+
   after_create :set_total
   before_update :update_total
 

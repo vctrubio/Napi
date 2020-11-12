@@ -1,6 +1,7 @@
 class Payment < ApplicationRecord
     has_many :employees
     has_one :total, dependent: :destroy
+    has_and_belongs_to_many :employees
 
     after_create :set_total
     after_update :update_total

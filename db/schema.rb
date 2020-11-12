@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_10_194336) do
+ActiveRecord::Schema.define(version: 2020_11_12_155105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,12 +45,12 @@ ActiveRecord::Schema.define(version: 2020_11_10_194336) do
   create_table "employees", force: :cascade do |t|
     t.string "name"
     t.string "phone"
-    t.float "credit", default: 0.0, null: false
     t.text "description"
     t.boolean "archive"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "cash"
+    t.float "paidcash"
   end
 
   create_table "fruits", force: :cascade do |t|
@@ -90,11 +90,11 @@ ActiveRecord::Schema.define(version: 2020_11_10_194336) do
   create_table "payments", force: :cascade do |t|
     t.date "date"
     t.string "name"
-    t.string "price"
     t.boolean "ticket"
     t.bigint "employee_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "price"
     t.index ["employee_id"], name: "index_payments_on_employee_id"
   end
 
