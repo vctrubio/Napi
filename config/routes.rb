@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'homes/index'
   resources :totals
   resources :payments
   resources :bags
@@ -10,7 +11,8 @@ Rails.application.routes.draw do
   resources :clients
   resources :employees
   devise_for :users
-  root to: 'pages#home'
+  # root to: 'pages#home'
+  root to: 'homes#index'
 
   # namespace :api, defaults: { format: :json } do
   #   namespace :v1 do
