@@ -24,9 +24,23 @@ Vue.use(VXETable)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import Router from 'vue-router'
+Vue.use(Router)
+
 document.addEventListener('DOMContentLoaded', () => {
+  const router = new Router({
+    routes: [
+      // {
+      //   path: '/',
+      //   name: 'post',
+      //   component: Post
+      // },
+    ],
+    mode: "history"
+  });
   const app = new Vue({
-    render: h => h(App)
+    render: h => h(App),
+    router : router
   }).$mount()
   document.body.appendChild(app.$el)
 
