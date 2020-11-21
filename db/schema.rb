@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_155105) do
+ActiveRecord::Schema.define(version: 2020_11_12_155106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_155105) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rating"
+    t.boolean "archive"
     t.index ["employee_id"], name: "index_clients_on_employee_id"
   end
 
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_155105) do
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "archive"
   end
 
   create_table "landlords", force: :cascade do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_155105) do
     t.integer "fields", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "archive"
   end
 
   create_table "orders", force: :cascade do |t|

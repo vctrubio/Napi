@@ -52,6 +52,8 @@ class Landlords < Api
 			requires :address, type: String, desc: 'Address'
 			requires :description, type: String, desc: 'Description'
 			requires :fields, type: String, desc: 'Fields'
+			requires :archive, type: Boolean, desc: 'Archive'
+
 		end
 
 		post '/' do
@@ -70,6 +72,8 @@ class Landlords < Api
 			requires :address, type: String, desc: 'Address'
 			requires :description, type: String, desc: 'Description'
 			requires :fields, type: String, desc: 'Fields'
+			requires :archive, type: Boolean, desc: 'Archive'
+
 		end
 
 		post '/:id' do

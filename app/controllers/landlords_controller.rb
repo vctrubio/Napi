@@ -69,6 +69,6 @@ class LandlordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def landlord_params
-      params.require(:landlord).permit(:name, :phone, :address, :description, :fields)
+      params.require(:landlord).permit(:name, :phone, :address, :description, :fields, :archive)
     end
 end

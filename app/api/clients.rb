@@ -77,6 +77,8 @@ class Clients < Api
       requires :employee_id, type: String, desc: 'Employee Id'
       requires :latitude, type: String, desc: 'Latitude'
       requires :longitude, type: Boolean, desc: 'Longitude'
+      requires :archive, type: Boolean, desc: 'Archive'
+
     end
 
     post '/' do
@@ -101,6 +103,8 @@ class Clients < Api
       requires :employee_id, type: String, desc: 'Employee Id'
       requires :latitude, type: String, desc: 'Latitude'
       requires :longitude, type: Boolean, desc: 'Longitude'
+      requires :archive, type: Boolean, desc: 'Archive'
+
     end
     
     put '/:id' do

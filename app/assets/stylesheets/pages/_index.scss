@@ -2,54 +2,67 @@
 @import "home";
 
 .box-two{
-    border: 1px solid black;
+    border-top: 1px solid black;
+    // border-bottom: 1px solid black;
+    // border-left: 1px solid black;
+    // border-right: 1px solid black;
     margin: 10px;
     min-height:350px;
 
-
 }
-
-.box-three{
-    border: 1px solid black;
-    margin: 10px;
-    min-height:150px;
-
-
-}
-
 .box-uno{
     display: flex;
     border: 1px solid black;
     margin: 10px;
-    min-height:150px;
+    font-family: "Lucida Console", Courier, monospace;
+
 }
 
-.container-three{
-    max-width: 1200px;
+.box-three{
+    // border: 1px solid black;
+    margin: 10px;
+    font-family: italic small-caps bold 12px/30px Georgia, serif !important;
+    padding: 10px;
+    text-align: center;
+
 }
 
-.content-header{
-    border: 1px solid black;
-    height: 150px;
-    width: 800px;
+
+.card-receipt{
+    width: 5.8in;
+    height: 8.3in;
+    // border: 1px solid black;
 }
 
 .content-logo{
-    border: 1px solid black;
+    // border: 1px solid black;
     height: 150px;
-    width: 180px;
+    width: 550px;
     display: flex;
-    margin-left: 180px;
-
+    margin-left: 35px;
+    background-image: image-url("nprop.png");
+    background-repeat:none;
+    background-position-x: 0.16cm;
 }
 
+.content-header{
+    // border: 1px solid black;
+    height: 150px;
+    width: 900px;
+}
+
+
 .content-name{
-    border: 1px solid black;
+    // border: 1px solid black;
     margin: 10px;
     height:60px;
 }
 .content-info{
-    border: 1px solid black;
-    margin: 10px;
+    border-bottom: 1px solid black;
+    margin: 20px;
     height:60px;
+}
+
+.align-right{
+    align-content: right;
 }

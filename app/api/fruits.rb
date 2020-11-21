@@ -30,7 +30,9 @@ class Fruits < Api
 			requires :comment, type: String, desc: 'comment'
    		requires :priceA, type: Float, desc: 'priceA'
    		requires :priceB, type: Float, desc: 'priceB'
-   		requires :priceC, type: Float, desc: 'priceC'
+		   requires :priceC, type: Float, desc: 'priceC'
+		   requires :archive, type: Boolean, desc: 'Archive'
+
 		end
 
 		post '/' do
@@ -48,7 +50,9 @@ class Fruits < Api
 			requires :comment, type: String, desc: 'comment'
    		requires :priceA, type: Float, desc: 'priceA'
    		requires :priceB, type: Float, desc: 'priceB'
-   		requires :priceC, type: Float, desc: 'priceC'
+		   requires :priceC, type: Float, desc: 'priceC'
+		   requires :archive, type: Boolean, desc: 'Archive'
+
 		end
     
 		put '/:id' do
